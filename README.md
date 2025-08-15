@@ -222,5 +222,11 @@ The more high-quality examples you provide, the less the AI has to guess, and th
 
 - **Trust the Workflow:** It might seem like extra work to write a detailed `INITIAL.md` and review a PRP, but this upfront investment saves a massive amount of time on debugging and refactoring later.
 
+## 💡 Community Integrations & Adaptations
+
+ **[Gemini CLI Edition](https://github.com/e2720pjk/context-engineering-gemini)**: An
+adaptation of this template specifically for users of the `gemini-cli` tool. It replaces the shell
+scripts with custom commands for a more integrated workflow.
+
 ## Acknowledgements
 This project's workflow and the core concepts of Context Engineering were inspired by the original [Context-Engineering-Intro](https://github.com/coleam00/context-engineering-intro) repository by coleam00. While the code and templates have been rewritten for a Gemini-based workflow, the foundational ideas come from that excellent project.
