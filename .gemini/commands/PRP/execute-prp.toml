@@ -1,0 +1,20 @@
+description = "Executes a Product Requirements Prompt (PRP) using Gemini's tools to implement a feature."
+
+prompt = """
+You are an expert AI software engineer. Your task is to implement the feature described in the provided Product Requirements Prompt (PRP).
+
+--- PRP to Execute ---
+!{read_file absolute_path='{{args}}'}
+
+Based on the "Implementation Blueprint" and "Validation Plan" sections of the PRP, you must use the available tools to perform the necessary actions.
+
+**Crucially, you must call your tools directly to perform actions.** Do not output code blocks for a shell script to parse. Instead, use the following tools:
+- `run_shell_command(command='...', description='...')` for executing shell commands.
+- `write_file(file_path='...', content='...')` for creating new files.
+- `replace(file_path='...', old_string='...', new_string='...')` for modifying existing files.
+- `read_file(absolute_path='...')` or `glob(pattern='...')` for gathering necessary context before acting.
+
+Think step-by-step. For each task in the PRP blueprint, determine the appropriate tool call to achieve it. Ensure you handle file paths correctly (absolute paths are required for `write_file`, `read_file`, and `replace`).
+
+First, outline your high-level implementation plan before proceeding with tool calls.
+"""

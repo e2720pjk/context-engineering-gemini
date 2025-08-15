@@ -1,45 +1,39 @@
-# Context Engineering Template (Gemini Edition)
+# Context Engineering Template (Gemini CLI Edition)
+
 A comprehensive template for getting started with Context Engineering - the discipline of engineering context for AI coding assistants so they have the information necessary to get the job done end to end.
 
 **Context Engineering is 10x better than prompt engineering and 100x better than vibe coding.**
 
 ---
 
-💡 **Want to learn more about the philosophy behind this project?** [**Read my introductory blog post: "Beyond the Prompt: A Practical Guide to Context Engineering with Gemini."**](https://aryan-gupta.is-a.dev/blog/2025/context-engineering/)
+## 🚀 Quick Start
 
----
+```bash
+# 1. Clone this template
+git clone https://github.com/google-gemini/context-engineering-gemini.git
+cd context-engineering-gemini
 
-## ⚙️ Configuration
-Before you can use this framework, you need to configure it with a Google Gemini API key.
+# 2. Install dependencies (Gemini CLI)
+# Refer to the original project for installation: https://github.com/google-gemini/gemini-cli
 
-### 1. Get Your API Key
-You can get a free API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
+# 3. Create your initial feature request
+cp INITIAL.md request.md
+# ... then edit request.md with your feature requirements
 
-### 2. Set the Environment Variable
-This framework uses an environment variable to securely access your API key. Open your terminal and run the appropriate command for your system:
+# 4. Start Gemini CLI
+gemini
 
-- **macOS / Linux:**
-```shell
-export GEMINI_API_KEY="YOUR_API_KEY_HERE"
+# 5. Generate a comprehensive PRP (Product Requirements Prompt)
+# In Gemini CLI, run:
+/PRP:generate-prp request.md
+
+# 6. Execute the PRP to implement your feature
+# In Gemini CLI, run:
+/PRP:execute-prp PRPs/request_prp.md
 ```
-
-- **Windows (PowerShell):**
-```shell
-$env:GEMINI_API_KEY="YOUR_API_KEY_HERE"
-```
-
-**Note:** This variable is only set for your current terminal session. For a permanent solution, you'll need to add this line to your shell's startup file (e.g., `.zshrc`, `.bash_profile`, or your PowerShell profile).
-
-### 3. Install Dependencies
-The scripts use standard command-line tools to function. Please install them using your system's package manager.
-
-- `jq`: For parsing JSON responses.
-
-- `awk`: For parsing the AI's plan. (Usually pre-installed on Linux/macOS).
-
-- `base64`: For encoding/decoding content. (Usually pre-installed on Linux/macOS).
 
 ## 📚 Table of Contents
+
 **[What is Context Engineering?](#what-is-context-engineering)**
 
 **[Template Structure](#template-structure)**
@@ -53,6 +47,11 @@ The scripts use standard command-line tools to function. Please install them usi
 **[Using Examples Effectively](#using-examples-effectively)**
 
 **[Best Practices](#best-practices)**
+
+**[Resources](#resources)**
+
+
+---
 
 ## What is Context Engineering?
 Context Engineering represents a paradigm shift from traditional prompt engineering:
@@ -88,9 +87,10 @@ Context Engineering represents a paradigm shift from traditional prompt engineer
 context-engineering-gemini/
 │
 ├── .gemini/                  # Houses all AI-related tooling and templates.
-│   ├── scripts/
-│   │   ├── generate-prp.sh
-│   │   └── execute-prp.sh
+│   ├── commands/
+│   │   └── PRP/
+│   │       ├── execute-prp.toml
+│   │       └── generate-prp.toml
 │   └── templates/
 │       └── prp_template.md
 │
@@ -127,55 +127,40 @@ This template provides a robust foundation for Context Engineering. The next evo
 ## Step-by-Step Guide
 This framework uses a powerful, two-step workflow to build software with Gemini.
 
-### 1. Create a Feature Request
+### 1. Set Up Global Rules (GEMINI.md)
+The `GEMINI.md` file contains project-wide rules that the AI assistant will follow. This is where you define your architectural principles, coding standards, and testing requirements to ensure consistency. You can use the provided template or customize it for your project.
+
+### 2. Create a Feature Request
 To start a new feature, you don't edit the `INITIAL.md` template directly. Instead:
 
 1. **Copy** `INITIAL.md` to a new file named `request.md`.
+2. **Fill out** `request.md` with the details of your new feature. See the "Writing Effective INITIAL.md Files" section below for tips.
 
-2. **Fill out** `request.md` with the details of your new feature.
-
-### 2. Generate the PRP (The Plan)
-Now, run the `generate-prp.sh` script. This script sends your feature request to Gemini and asks it to act as a senior engineer, creating a detailed technical blueprint called a Product Requirements Prompt (PRP).
-
-- **For macOS / Linux:**
+### 3. Generate the PRP (The Plan)
+First, launch the Gemini CLI in your terminal:
 ```shell
-# Make the script executable first
-chmod +x .gemini/scripts/generate-prp.sh
-
-# Run the script
-./.gemini/scripts/generate-prp.sh request.md
+gemini
 ```
+Now, run the `generate-prp` command. This command sends your feature request to Gemini and asks it to act as a senior engineer, creating a detailed technical blueprint called a Product Requirements Prompt (PRP).
 
-- **For Windows (using a bash interpreter like Git Bash):**
 ```shell
-bash ./.gemini/scripts/generate-prp.sh request.md
+/PRP:generate-prp request.md
 ```
-
 This will create a new, permanent PRP file inside the `PRPs/` directory.
 
-### 3. Execute the PRP (The Automated Agent)
-This is where the magic happens. Run the `execute-prp.sh` script with the path to the newly created PRP.
+> **Note:** The `/PRP:generate-prp` and `/PRP:execute-prp` commands are custom commands defined in the `.gemini/commands/PRP/` directory. You can inspect and modify them to fit your workflow.
 
-- **For macOS / Linux:**
+### 4. Execute the PRP (The Automated Agent)
+This is where the magic happens. Run the `execute-prp` command with the path to the newly created PRP.
+
 ```shell
-# Make the script executable first
-chmod +x .gemini/scripts/execute-prp.sh
-
-# Run the script
-./.gemini/scripts/execute-prp.sh PRPs/request_prp.md
+/PRP:execute-prp PRPs/request_prp.md
 ```
 
-- **For Windows (using a bash interpreter like Git Bash):**
-```shell
-bash ./.gemini/scripts/execute-prp.sh PRPs/request_prp.md
-```
-
-This script acts as an **AI agent**:
+This command acts as an **AI agent**:
 
 1. It sends the detailed PRP to Gemini to get a step-by-step implementation plan.
-
 2. It parses the AI's response, identifying shell commands to run and code files to create.
-
 3. It then executes this plan step-by-step, **pausing to ask for your confirmation** before running any command or writing any file.
 
 This allows you to sit back and supervise as the AI builds the entire feature for you, right in your local terminal.
@@ -194,9 +179,9 @@ The `INITIAL.md` file is the starting point for any new feature. The quality of 
 ## The PRP Workflow
 The PRP (Product Requirements Prompt) workflow is a two-step process designed to ensure the AI has a comprehensive plan before writing a single line of code.
 
-1. **Generation (`generate-prp.sh`):** This first step is about **planning**. The script takes your high-level `INITIAL.md` feature request and asks Gemini to expand it into a detailed technical blueprint (the PRP). This blueprint includes a proposed file structure, a task breakdown, pseudocode, and a validation plan. It forces the AI to think through the entire implementation first.
+1. **Generation (`generate-prp`):** This first step is about **planning**. The command takes your high-level `INITIAL.md` feature request and asks Gemini to expand it into a detailed technical blueprint (the PRP). This blueprint includes a proposed file structure, a task breakdown, pseudocode, and a validation plan. It forces the AI to think through the entire implementation first.
 
-2. **Execution (`execute-prp.sh`):** This second step is about **implementation**. The script takes the detailed PRP and sends it back to Gemini with a clear instruction: "Build this." Because all the research and planning is already done, the AI can focus solely on writing clean, correct code that follows the blueprint.
+2. **Execution (`execute-prp`):** This second step is about **implementation**. The command takes the detailed PRP and sends it back to Gemini with a clear instruction: "Build this." Because all the research and planning is already done, the AI can focus solely on writing clean, correct code that follows the blueprint.
 
 This separation of planning from implementation is the key to the workflow's success.
 
@@ -215,12 +200,27 @@ The `examples/` folder is your secret weapon for ensuring project consistency. A
 
 The more high-quality examples you provide, the less the AI has to guess, and the more the final code will look like you wrote it yourself.
 
+### Example Structure
+To give the AI clear patterns, structure your `examples/` folder logically. For instance:
+```
+examples/
+├── README.md           # Explains what each example demonstrates
+├── api_client.py       # A complete, well-structured API client
+├── data_models.py      # Pydantic models or data structures
+└── tests/              # Testing patterns
+    └── test_api_client.py # An example of a test file with mocks
+```
+
 ## Best Practices
 - **Be Explicit:** Never assume the AI knows your preferences. The more explicit you are in your `INITIAL.md` and `GEMINI.md` files, the better the result will be.
 
 - **Iterate on the Process:** If the AI makes a mistake, don't just fix the code. Think about why it made the mistake. Does a rule in `GEMINI.md` need to be clearer? Do you need a better example in the `examples/` folder? Improving the process will prevent the same mistake from happening again.
 
 - **Trust the Workflow:** It might seem like extra work to write a detailed `INITIAL.md` and review a PRP, but this upfront investment saves a massive amount of time on debugging and refactoring later.
+
+## 📚 Resources
+- [Gemini CLI Repository](https://github.com/google-gemini/gemini-cli)
+- [Blog: A Practical Guide to Context Engineering with Gemini](https://aryan-gupta.is-a.dev/blog/2025/context-engineering/)
 
 ## Acknowledgements
 This project's workflow and the core concepts of Context Engineering were inspired by the original [Context-Engineering-Intro](https://github.com/coleam00/context-engineering-intro) repository by coleam00. While the code and templates have been rewritten for a Gemini-based workflow, the foundational ideas come from that excellent project.

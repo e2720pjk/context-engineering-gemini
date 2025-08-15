@@ -1,0 +1,17 @@
+description = "Generates a detailed Product Requirements Prompt (PRP) from a feature request file."
+
+prompt = """
+You are an expert AI software engineer. Your task is to generate a complete Product Requirements Prompt (PRP) based on the provided user request.
+
+--- Template to Follow ---
+!{read_file absolute_path='context-engineering-gemini/.gemini/templates/prp_template.md'}
+
+--- User Request ---
+!{read_file absolute_path='{{args}}'}
+
+**Your output must strictly follow the structure of the template above and use the exact headings.** Do not invent your own headings or sections. You must fill out every section of the template: `1. Overview`, `2. Success Criteria`, `3. Context & Resources`, `4. Implementation Blueprint`, and `5. Validation Plan`.
+
+Your final output must **only** be the complete PRP Markdown content. Do not include any other text or preamble.
+
+After generating the PRP content, use the `write_file` tool to save it. The output file should be named `PRPs/<feature_file_basename>_prp.md`. For example, if the feature file is `my_feature.md`, the output file should be `PRPs/my_feature_prp.md`. Ensure the `PRPs` directory exists.
+"""
