@@ -1,5 +1,7 @@
 # Context Engineering Template (Gemini CLI Edition)
 
+> 🌐 **Language**: [English](README.md) | [繁體中文](README_zh-TW.md)
+
 A comprehensive template for getting started with Context Engineering - the discipline of engineering context for AI coding assistants so they have the information necessary to get the job done end to end.
 
 **Context Engineering is 10x better than prompt engineering and 100x better than vibe coding.**
@@ -34,46 +36,45 @@ gemini
 
 ## 📚 Table of Contents
 
-**[What is Context Engineering?](#what-is-context-engineering)**
-
-**[Template Structure](#template-structure)**
-
-**[Step-by-Step Guide](#step-by-step-guide)**
-
-**[Writing Effective INITIAL.md Files](#writing-effective-initialmd-files)**
-
-**[The PRP Workflow](#the-prp-workflow)**
-
-**[Using Examples Effectively](#using-examples-effectively)**
-
-**[Best Practices](#best-practices)**
-
-**[Resources](#resources)**
-
+* [Context Engineering Template (Gemini CLI Edition)](#context-engineering-template-gemini-cli-edition)
+  * [🚀 Quick Start](#-quick-start)
+  * [📚 Table of Contents](#-table-of-contents)
+  * [What is Context Engineering?](#what-is-context-engineering)
+  * [Template Structure](#template-structure)
+  * [Step-by-Step Guide](#step-by-step-guide)
+  * [Writing Effective INITIAL.md Files](#writing-effective-initialmd-files)
+  * [The PRP Workflow](#the-prp-workflow)
+  * [Using Examples Effectively](#using-examples-effectively)
+  * [Best Practices](#best-practices)
+  * [📚 Resources](#-resources)
+  * [Acknowledgements](#acknowledgements)
 
 ---
 
 ## What is Context Engineering?
+
 Context Engineering represents a paradigm shift from traditional prompt engineering:
 
 ### Prompt Engineering vs Context Engineering
+
 **Prompt Engineering:**
 
-- Focuses on clever wording and specific phrasing
+* Focuses on clever wording and specific phrasing
 
-- Limited to how you phrase a task
+* Limited to how you phrase a task
 
-- Like giving someone a sticky note
+* Like giving someone a sticky note
 
 **Context Engineering:**
 
-- A complete system for providing comprehensive context
+* A complete system for providing comprehensive context
 
-- Includes documentation, examples, rules, patterns, and validation
+* Includes documentation, examples, rules, patterns, and validation
 
-- Like writing a full screenplay with all the details
+* Like writing a full screenplay with all the details
 
 ### Why Context Engineering Matters
+
 1. **Reduces AI Failures:** Most agent failures aren't model failures - they're context failures
 
 2. **Ensures Consistency:** AI follows your project patterns and conventions
@@ -83,7 +84,8 @@ Context Engineering represents a paradigm shift from traditional prompt engineer
 4. **Self-Correcting:** Validation loops allow AI to fix its own mistakes
 
 ## Template Structure
-```
+
+```text
 context-engineering-gemini/
 │
 ├── .gemini/                  # Houses all AI-related tooling and templates.
@@ -125,32 +127,40 @@ context-engineering-gemini/
 This template provides a robust foundation for Context Engineering. The next evolution of this workflow could involve integrating more advanced AI techniques, such as Retrieval-Augmented Generation (RAG) for automated documentation research and AI-driven tools (function calling) for a fully autonomous implementation and testing loop.
 
 ## Step-by-Step Guide
+
 This framework uses a powerful, two-step workflow to build software with Gemini.
 
 ### 1. Set Up Global Rules (GEMINI.md)
+
 The `GEMINI.md` file contains project-wide rules that the AI assistant will follow. This is where you define your architectural principles, coding standards, and testing requirements to ensure consistency. You can use the provided template or customize it for your project.
 
 ### 2. Create a Feature Request
+
 To start a new feature, you don't edit the `INITIAL.md` template directly. Instead:
 
 1. **Copy** `INITIAL.md` to a new file named `request.md`.
 2. **Fill out** `request.md` with the details of your new feature. See the "Writing Effective INITIAL.md Files" section below for tips.
 
 ### 3. Generate the PRP (The Plan)
+
 First, launch the Gemini CLI in your terminal:
+
 ```shell
 gemini
 ```
+
 Now, run the `generate-prp` command. This command sends your feature request to Gemini and asks it to act as a senior engineer, creating a detailed technical blueprint called a Product Requirements Prompt (PRP).
 
 ```shell
 /PRP:generate-prp request.md
 ```
+
 This will create a new, permanent PRP file inside the `PRPs/` directory.
 
 > **Note:** The `/PRP:generate-prp` and `/PRP:execute-prp` commands are custom commands defined in the `.gemini/commands/PRP/` directory. You can inspect and modify them to fit your workflow.
 
 ### 4. Execute the PRP (The Automated Agent)
+
 This is where the magic happens. Run the `execute-prp` command with the path to the newly created PRP.
 
 ```shell
@@ -166,17 +176,19 @@ This command acts as an **AI agent**:
 This allows you to sit back and supervise as the AI builds the entire feature for you, right in your local terminal.
 
 ## Writing Effective INITIAL.md Files
+
 The `INITIAL.md` file is the starting point for any new feature. The quality of your input here directly impacts the quality of the AI's output. Here’s how to make it effective:
 
-- **🎯 The Goal:** Be specific and clear. Instead of "make a login page," write "create a login page with email/password fields, a 'Forgot Password' link, and Google OAuth integration." The more detail, the better.
+* **🎯 The Goal:** Be specific and clear. Instead of "make a login page," write "create a login page with email/password fields, a 'Forgot Password' link, and Google OAuth integration." The more detail, the better.
 
-- **🎨 Inspiration & Examples:** This is one of the most powerful sections. If you have an existing file that shows how you handle API clients, database connections, or error handling, reference it here. It gives the AI a concrete pattern to follow, ensuring consistency.
+* **🎨 Inspiration & Examples:** This is one of the most powerful sections. If you have an existing file that shows how you handle API clients, database connections, or error handling, reference it here. It gives the AI a concrete pattern to follow, ensuring consistency.
 
-- **📚 Required Knowledge:** Don't make the AI guess. Provide direct links to the exact API documentation, libraries, or Stack Overflow threads it will need. This saves time and prevents the AI from using outdated or incorrect information.
+* **📚 Required Knowledge:** Don't make the AI guess. Provide direct links to the exact API documentation, libraries, or Stack Overflow threads it will need. This saves time and prevents the AI from using outdated or incorrect information.
 
-- **⚠️Potential Pitfalls & Gotchas:** Think about what might go wrong. Does the API have a weird rate limit? Is there a tricky authentication flow? Mentioning these upfront helps the AI avoid common mistakes and build more robust code from the start.
+* **⚠️Potential Pitfalls & Gotchas:** Think about what might go wrong. Does the API have a weird rate limit? Is there a tricky authentication flow? Mentioning these upfront helps the AI avoid common mistakes and build more robust code from the start.
 
 ## The PRP Workflow
+
 The PRP (Product Requirements Prompt) workflow is a two-step process designed to ensure the AI has a comprehensive plan before writing a single line of code.
 
 1. **Generation (`generate-prp`):** This first step is about **planning**. The command takes your high-level `INITIAL.md` feature request and asks Gemini to expand it into a detailed technical blueprint (the PRP). This blueprint includes a proposed file structure, a task breakdown, pseudocode, and a validation plan. It forces the AI to think through the entire implementation first.
@@ -186,23 +198,24 @@ The PRP (Product Requirements Prompt) workflow is a two-step process designed to
 This separation of planning from implementation is the key to the workflow's success.
 
 ## Using Examples Effectively
+
 The `examples/` folder is your secret weapon for ensuring project consistency. AI assistants excel at pattern recognition.
 
 ### What makes a good example?
 
-- **Complete Patterns:** Show a full, working example of a pattern, not just a snippet. For instance, provide a complete API client class, not just one function.
+* **Complete Patterns:** Show a full, working example of a pattern, not just a snippet. For instance, provide a complete API client class, not just one function.
 
-- **Code Structure:** Include examples of how you structure your classes, organize your imports, and name your variables.
+* **Code Structure:** Include examples of how you structure your classes, organize your imports, and name your variables.
 
-- **Error Handling:** Show how you expect errors to be caught and handled. This is often overlooked but is critical for production-quality code.
+* **Error Handling:** Show how you expect errors to be caught and handled. This is often overlooked but is critical for production-quality code.
 
-- **Testing:** Provide an example of a test file (`test_*.py`) that shows your preferred testing style, including how to use mocks.
+* **Testing:** Provide an example of a test file (`test_*.py`) that shows your preferred testing style, including how to use mocks.
 
 The more high-quality examples you provide, the less the AI has to guess, and the more the final code will look like you wrote it yourself.
 
 ### Example Structure
-To give the AI clear patterns, structure your `examples/` folder logically. For instance:
-```
+
+```text
 examples/
 ├── README.md           # Explains what each example demonstrates
 ├── api_client.py       # A complete, well-structured API client
@@ -212,15 +225,18 @@ examples/
 ```
 
 ## Best Practices
-- **Be Explicit:** Never assume the AI knows your preferences. The more explicit you are in your `INITIAL.md` and `GEMINI.md` files, the better the result will be.
 
-- **Iterate on the Process:** If the AI makes a mistake, don't just fix the code. Think about why it made the mistake. Does a rule in `GEMINI.md` need to be clearer? Do you need a better example in the `examples/` folder? Improving the process will prevent the same mistake from happening again.
+* **Be Explicit:** Never assume the AI knows your preferences. The more explicit you are in your `INITIAL.md` and `GEMINI.md` files, the better the result will be.
 
-- **Trust the Workflow:** It might seem like extra work to write a detailed `INITIAL.md` and review a PRP, but this upfront investment saves a massive amount of time on debugging and refactoring later.
+* **Iterate on the Process:** If the AI makes a mistake, don't just fix the code. Think about why it made the mistake. Does a rule in `GEMINI.md` need to be clearer? Do you need a better example in the `examples/` folder? Improving the process will prevent the same mistake from happening again.
+
+* **Trust the Workflow:** It might seem like extra work to write a detailed `INITIAL.md` and review a PRP, but this upfront investment saves a massive amount of time on debugging and refactoring later.
 
 ## 📚 Resources
-- [Gemini CLI Repository](https://github.com/google-gemini/gemini-cli)
-- [Blog: A Practical Guide to Context Engineering with Gemini](https://aryan-gupta.is-a.dev/blog/2025/context-engineering/)
+
+* [Gemini CLI Repository](https://github.com/google-gemini/context-engineering-gemini)
+* [Blog: A Practical Guide to Context Engineering with Gemini](https://aryan-gupta.is-a.dev/blog/2025/context-engineering/)
 
 ## Acknowledgements
+
 This project's workflow and the core concepts of Context Engineering were inspired by the original [Context-Engineering-Intro](https://github.com/coleam00/context-engineering-intro) repository by coleam00. While the code and templates have been rewritten for a Gemini-based workflow, the foundational ideas come from that excellent project.
