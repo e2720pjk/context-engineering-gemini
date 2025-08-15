@@ -234,8 +234,9 @@ examples/
 
 ## 📚 資源
 
-* [Gemini CLI 儲存庫](https://github.com/google-gemini/context-engineering-gemini)
-* [部落格：使用 Gemini 進行情境工程的實用指南](https://aryan-gupta.is-a.dev/blog/2025/context-engineering/)
+* Gemini CLI Repository:[https://github.com/google-gemini/context-engineering-gemini](https://github.com/google-gemini/context-engineering-gemini)
+* Blog: A Practical Guide to Context Engineering with Gemini:[https://aryan-gupta.is-a.dev/blog/2025/context-engineering/](https://aryan-gupta.is-a.dev/blog/2025/context-engineering/)
+* Context-Engineering-Intro: [https://github.com/coleam00/context-engineering-intro](https://github.com/coleam00/context-engineering-intro)
 
 ## 致謝
 
